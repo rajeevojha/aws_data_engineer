@@ -1,0 +1,30 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  OrdersCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: orders-crawler
+      Role: arn:aws:iam::<your-account-id>:role/AWSGlueServiceRole
+      DatabaseName: retail_data
+      Targets:
+        S3Targets:
+          - Path: s3://your-bucket/raw/orders/
+      TablePrefix: ""
+      SchemaChangePolicy:
+        UpdateBehavior: UPDATE_IN_DATABASE
+        DeleteBehavior: DEPRECATE_IN_DATABASE
+
+  EmployeesCrawler:
+    Type: AWS::Glue::Crawler
+    Properties:
+      Name: employees-crawler
+      Role: arn:aws:iam::<your-account-id>:role/AWSGlueServiceRole
+      DatabaseName: retail_data
+      Targets:
+        S3Targets:
+          - Path: s3://your-bucket/raw/employees/
+      TablePrefix: ""
+      SchemaChangePolicy:
+        UpdateBehavior: UPDATE_IN_DATABASE
+        DeleteBehavior: DEPRECATE_IN_DATABASE
+
