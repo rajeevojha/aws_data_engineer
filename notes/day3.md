@@ -24,3 +24,6 @@
   - no changes to the crawlers
   - ran the crawlers
   - the tables got created, however it did not pick the header :-(  
+## fix emp table creation - attempt 2
+  - updated all the emp files to have header
+  - delete the tables and rebuild
