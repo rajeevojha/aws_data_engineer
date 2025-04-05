@@ -27,3 +27,10 @@
 ## fix emp table creation - attempt 2
   - updated all the emp files to have header
   - delete the tables and rebuild
+## fid emp table creation - attempt 3
+  - added a custome classifier where indicated that the file does have a header
+  - the problem is, if all the columns of the csv are string, glue crwaller fails to identify the header. one solution proposed is to add a dummy column which is an integer
+
+
+
+## have also added json which can be used by aws cli to create crawlers, it is not complete

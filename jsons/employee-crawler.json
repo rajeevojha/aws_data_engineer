@@ -1,0 +1,18 @@
+{
+  "Name": "employee-crawler",
+  "Role": "arn:aws:iam::123456789012:role/AWSGlueServiceRole-YourRole",
+  "DatabaseName": "sample_data_db",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://your-bucket-name/employees_with_headers/"
+      }
+    ]
+  },
+  "TablePrefix": "emp_",
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "DEPRECATE_IN_DATABASE"
+  }
+}
+
