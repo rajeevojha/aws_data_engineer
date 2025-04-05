@@ -18,3 +18,9 @@
   - Checking if they completed
   - Dumping schema to JSON for metadata checks
   - Exporting to repo
+## fix emp table creation
+  - none of the emp files had headers, manually edited one of the files to add the header,
+  - deleted the tables
+  - no changes to the crawlers
+  - ran the crawlers
+  - the tables got created, however it did not pick the header :-(  
