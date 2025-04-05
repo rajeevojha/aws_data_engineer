@@ -9,6 +9,8 @@
  ** Alternatively ** we could have use a cloud formation template to create the database, and the crawler.
 
 ## we used athena to view the data.
+   SELECT * FROM retail_data.sample_orders LIMIT 10;
+   athena query is very much like any other sql query
 
 ## TODO practice cloudformation as well as check on boto to do this
    automate:
