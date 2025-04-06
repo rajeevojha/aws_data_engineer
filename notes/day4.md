@@ -12,6 +12,7 @@
   - CREATE database abcd; => creates a database
 
 - the next one is creating a table in abcd database by using the parquet file stored in the s3 bucket. Quite simple.
+'''sql
 CREATE EXTERNAL TABLE IF NOT EXISTS abcd.processed_employee_dtl (
   first_name STRING,
   last_name STRING,
@@ -20,6 +21,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS abcd.processed_employee_dtl (
 )
 STORED AS PARQUET
 LOCATION 's3://{your bucket}/processed/';
+'''sql
 note the above command just consumed all the smaller files present in the folder and created the table. No other step was required. 
 ## TODO study more about Parquet
 - and a select statment to complete the puzzle.
