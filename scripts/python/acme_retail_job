@@ -1,0 +1,41 @@
+import sys
+import boto3
+from awsglue.context import GlueContext
+from pyspark.context import SparkContext
+from awsglue.dynamicframe import DynamicFrame
+
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
+
+# S3 input and output paths
+input_path = 's3://ro-aws-de-30/retail/unzip/'
+output_path = 's3://ro-aws-de-30/retail/processed/'
+
+# Read the data as a DynamicFrame
+dynamic_frame = glueContext.create_dynamic_frame.from_catalog(
+    database = "acme_retail_db",
+    table_name = "acme_unzip"
+)
+# has to do a bit of juggling
+# Load the data into a DynamicFrame 
+# Convert the DynamicFrame to a DataFrame.
+# Remove duplicates using the Spark DataFrame's dropDuplicates() method.
+# Convert back to a DynamicFrame using glueContext.create_dynamic_frame.from_dataframe(), ensure to use the correct method signature.
+df = dynamic_frame.toDF()
+
+# Remove duplicates using Spark DataFrame operation
+df_no_duplicates = df.dropDuplicates()
+
+# Convert back the cleaned DataFrame to a DynamicFrame
+dynamic_frame_no_duplicates = DynamicFrame.fromDF(df_no_duplicates, glueContext, "dynamic_frame_no_duplicates")
+
+
+# Convert to Parquet format and write to output path
+glueContext.write_dynamic_frame.from_options(
+    dynamic_frame_no_duplicates,
+    connection_type = "s3",
+    connection_options = {"path": output_path},
+    format = "parquet"
+)
+

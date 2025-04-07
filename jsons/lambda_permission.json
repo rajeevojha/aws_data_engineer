@@ -1,0 +1,41 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "logs:CreateLogGroup",
+            "Resource": "arn:aws:logs:us-west-1:054037126688:*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:us-west-1:122122122118:log-group:/aws/lambda/lambda1:*"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::ro-aws-de-30/retail/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "glue:StartCrawler",
+                "glue:GetCrawler",
+                "glue:StartJobRun"
+            ],
+            "Resource": [
+                "arn:aws:glue:us-west-1:121212121212:crawler/acme_retail_crawler",
+                "arn:aws:glue:us-west-1:011111111111:job/acme_retail_job"
+            ]
+        }
+    ]
+}

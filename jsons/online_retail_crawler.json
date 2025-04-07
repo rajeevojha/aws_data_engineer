@@ -1,0 +1,18 @@
+{
+  "Name": "retail-raw-crawler",
+  "Role": "AWSGlueServiceRole-ACMERetail",
+  "DatabaseName": "acme-retail-db",
+  "Targets": {
+    "S3Targets": [
+      {
+        "Path": "s3://ro-aws-de-30/retail/raw/"
+      }
+    ]
+  },
+  "TablePrefix": "retail_raw_",
+  "SchemaChangePolicy": {
+    "UpdateBehavior": "UPDATE_IN_DATABASE",
+    "DeleteBehavior": "DEPRECATE_IN_DATABASE"
+  }
+}
+
